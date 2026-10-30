@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+src/shift_handover/__init__.py
+src/shift_handover/__main__.py
+src/shift_handover/cli.py
+src/shift_handover/formatter.py
+src/shift_handover/models.py
+src/shift_handover/storage.py
+src/shift_handover_notes.egg-info/PKG-INFO
+src/shift_handover_notes.egg-info/SOURCES.txt
+src/shift_handover_notes.egg-info/dependency_links.txt
+src/shift_handover_notes.egg-info/entry_points.txt
+src/shift_handover_notes.egg-info/requires.txt
+src/shift_handover_notes.egg-info/top_level.txt
+tests/test_formatter.py

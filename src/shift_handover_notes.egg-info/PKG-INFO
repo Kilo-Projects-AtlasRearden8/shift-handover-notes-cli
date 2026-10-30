@@ -1,0 +1,171 @@
+Metadata-Version: 2.4
+Name: shift-handover-notes
+Version: 0.1.0
+Summary: Convert bullet-style shift notes into plain-language handover summaries for healthcare workers (education only, not medical advice)
+License: MIT License
+        
+        Copyright (c) 2026 Asdale Dynamics, LLC
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.12.0
+Requires-Dist: rich>=13.7.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Dynamic: license-file
+
+# Shift Handover Notes CLI
+
+A local-first Python CLI that converts bullet-style shift notes into plain-language
+handover summaries for healthcare workers. Built by **Asdale Dynamics, LLC**.
+
+## Purpose
+
+This tool helps practicing nurses and other healthcare workers turn quick,
+bullet-style shift notes into clean, plain-language handover summaries. It is
+designed for **education and communication practice only** — it is **not**
+medical advice, and it never replaces clinical judgment.
+
+Every summary printed by this tool carries an education-only disclaimer so it
+can never be mistaken for a clinical directive.
+
+## Who this is for
+
+This project is published by **Asdale Dynamics, LLC** (Indiana, formed October
+2026), founded by Dylan Asdale — a registered nurse turned AI author and the
+creator of *The Massive AI Manual* and hub site dylanasdale.github.io. The LLC
+focuses on beginner-friendly AI education, practical open-source tools, and
+accessible life-admin helpers. This CLI is part of the LLC's
+healthcare-worker AI aids line: tools built by a nurse, for nurses, that are
+clear, warm, tested, and local-first.
+
+## Features
+
+- **Bullet-to-plain-language conversion** — strips dash/asterisk/bullet markers,
+  capitalizes, and ensures clean sentence punctuation
+- **Category-organized summaries** — groups notes by shift category (Meds,
+  Vitals, Events, etc.)
+- **Local JSON storage** — all records are saved to a local JSON file; nothing
+  leaves your machine
+- **Printable output** — box-drawn, terminal-friendly summaries you can print
+  or copy into a handover sheet
+- **Education-only disclaimer** — appears on every summary, every time
+- **CLI commands** — `summarize`, `convert`, `list`, `view`, `delete`, `version`
+- **Zero dependencies on external APIs** — fully offline, no keys, no accounts
+
+## Installation
+
+```bash
+# Clone or copy this folder, then:
+pip install -e .
+
+# Or with dev dependencies (for tests):
+pip install -e ".[dev]"
+```
+
+## Usage
+
+### Convert bullets to a plain-language summary (no storage)
+
+```bash
+shift-handover summarize -c Meds "gave lisinopril 10mg" "patient tolerated well"
+```
+
+### Convert and save to a shift record
+
+```bash
+shift-handover convert -c Meds -s SHIFT-001 -u "Floor 3" -d 2026-10-30 \
+  "gave lisinopril 10mg" "patient tolerated well"
+```
+
+### List all stored shift records
+
+```bash
+shift-handover list
+```
+
+### View a stored shift record summary
+
+```bash
+shift-handover view SHIFT-001
+```
+
+### Delete a stored shift record
+
+```bash
+shift-handover delete SHIFT-001 --yes
+```
+
+### Show version
+
+```bash
+shift-handover shift-handover version
+# or
+python -m shift_handover version
+```
+
+## Example output
+
+```
+============================================================
+SHIFT HANDOVER SUMMARY
+============================================================
+Shift ID:    SHIFT-001
+Unit:        Floor 3
+Date:        2026-10-30
+Created:     2026-10-30T15:00:00.000000
+------------------------------------------------------------
+
+**Meds**
+  1. Gave lisinopril 10mg.
+  2. Patient tolerated well.
+
+⚠️  EDUCATIONAL PURPOSES ONLY — This summary is generated by an AI tool
+for learning and communication practice. It is NOT medical advice, does not
+replace clinical judgment, and should not be used for patient care decisions.
+Always verify with the outgoing nurse and consult your charge nurse or
+provider for clinical questions.
+============================================================
+END OF SUMMARY
+============================================================
+```
+
+## Testing
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+## License
+
+MIT License. Copyright (c) 2026 Asdale Dynamics, LLC.
+
+## About Asdale Dynamics, LLC
+
+**Asdale Dynamics, LLC** is an Indiana-based company founded by Dylan Asdale, a
+registered nurse turned AI author. The LLC publishes beginner-friendly AI
+education — books, guides, and practical open-source tools — that explain AI
+"like a friend would": plain English, step by step, never condescending.
+
+Learn more at [dylanasdale.github.io](https://dylanasdale.github.io).
