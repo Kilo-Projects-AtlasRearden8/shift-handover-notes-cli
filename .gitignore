@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+shift_records.json
+.pytest_cache/
+.coverage

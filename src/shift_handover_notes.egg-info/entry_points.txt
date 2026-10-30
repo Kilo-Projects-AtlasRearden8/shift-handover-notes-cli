@@ -1,2 +1,0 @@
-[console_scripts]
-shift-handover = shift_handover.cli:app
